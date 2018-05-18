@@ -1,10 +1,5 @@
 #include "screencasts.h"
-#include <GL/glext.h>
-
 #define LEN 8192
-
-/*GLOBAL*/
-
 
 void printv(va_list args, const char* format)
 {
@@ -30,4 +25,13 @@ void printAt(int x, int y, const char* format, ...)
 	va_start(args, format);
 	printv(args, format);
 	va_end(args);
+}
+
+/* 
+ * Convenience method to print out OpenGL errors to stderr 
+ */
+void errCheck(const char* where)
+{
+	int err = glGetError();
+	if (err) fprintf(stderr, "Error: %s [%s]\n", gluErrorString(err), where);
 }
