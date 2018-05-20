@@ -1,22 +1,5 @@
 #include "screencasts.h"
 
-/* Globals */
-double dim = 1.75; /*dimension of Ortho box*/
-
-/* Toggles */
-int toggleAxes = 0; /* toggle axes on and off */
-int toggleValues = 1; /* toggle values on and off */
-int toggleMode = 0; /* projection mode */
-
-/* Display View */
-int th = 0;		/* azimuth of view angle */
-int ph = 0;		/* elevation of view angle */
-
-int fov = 90;	/* field of view for perspective */
-int asp = 1;	/* aspect ratio */
-
-GLfloat eyeP[] = { 0.0,0.0,2.0 }; /* eye camera pointer */
-
 /* Global State Event */
 //const char *mouseBtnPressed = "";
 //const char *mouseState = "";
@@ -25,27 +8,6 @@ GLfloat eyeP[] = { 0.0,0.0,2.0 }; /* eye camera pointer */
 //const char *specialPressed = "";
 //const char *modifiers = "";
 //int mouseX, mouseY = 0;
-
-void drawScene()
-{
-
-	drawAxes(toggleAxes);
-	drawValues(toggleValues, ph, th);
-	if (toggleMode) drawPerspectiveRoom();
-	else drawOrthoRoom();
-}
-
-/*
-* reshape
-* -------
-* GLUT calls this routine when the window is resized
-*/
-void reshape(int width, int height)
-{
-	asp = (height > 0) ? (double)width / height : 1;
-	glViewport(0, 0, width, height);
-	project(toggleMode, dim, fov, asp);
-}
 
 /*
 * windowKey
@@ -58,16 +20,20 @@ void windowKey(unsigned char key, int x, int y)
 
 	/* Exit on ESC */
 	if (key == 27) exit(0);
-	else if (key == 'a' || key == 'A') toggleAxes = 1 - toggleAxes;
-	else if (key == 'v' || key == 'V') toggleValues = 1 - toggleValues;
-	else if (key == 'm' || key == 'M') toggleMode = 1 - toggleMode;
+	else if (key == '1') toggleAxes = 1 - toggleAxes;
+	else if (key == '2') toggleValues = 1 - toggleValues;
+	else if (key == '3') toggleMode = 1 - toggleMode;
+
 	/* Change field of view angle */
 	else if (key == '-') fov--;
 	else if (key == '+') fov++;
-	/* Change dimensions */
+	/* Change dimensions */ // NO USAGE
+	/*
 	else if (key == 'D') dim += 0.25;
 	else if (key == 'd') dim -= 0.25;
-	// Reset View Angle to center
+	*/
+
+	/* Reset View Angle to center */
 	if (toggleMode && key == 32)
 	{
 		eyeP[0] = 0.0;
@@ -75,18 +41,50 @@ void windowKey(unsigned char key, int x, int y)
 		eyeP[2] = 2.0;
 		fov = 90;
 	}
-	else if (key == 32){
+	else if (key == 32) {
 		th = 0;
 		ph = 0;
 		dim = 1.75;
 	}
+
+	///* LIGHTING */
+	//else if (key == 'l' || key == 'L') toggleLight = 1 - toggleLight;
+	///* Move light (rotation) */
+	//else if (key == '<') lightPh -= 5;
+	//else if (key == '>') lightPh += 5;
+	///* Move light (elevation) */
+	//else if (key == '[') lightY -= 5;
+	//else if (key == ']') lightY += 5;
+	///* Move light (distance) */
+	//else if (key == '{') lightD -= 5;
+	//else if (key == '}') lightD += 5;
+	///* Ambient Level */
+	//else if (key == 'a' && ambient > 0) ambient -= 5;
+	//else if (key == 'A' && ambient < 100) ambient += 5;
+	///* Diffuse Level */
+	//else if (key == 'd' && diffuse > 0) diffuse -= 5;
+	//else if (key == 'D' && diffuse < 100) diffuse += 5;
+	///* Specular Level */
+	//else if (key == 's' && specular > 0) specular -= 5;
+	//else if (key == 'S' && specular < 100) specular += 5;
+	///* Emission Level */
+	//else if (key == 'e' && emission > 0) emission -= 5;
+	//else if (key == 'E' && emission < 100) emission += 5;
+	///* Shininess Level */
+	//else if (key == 'n' && shininess > -1) shininess -= 1;
+	//else if (key == 'N' && shininess < 7) shininess += 1;
+
+	///* Translate shininess power to value (-1 => 0) */
+	//shinYvec[0] = shininess < 0 ? 0 : pow(2.0, shininess);
+
+	//redisplayAll();
 
 	/*if (currModifiers == GLUT_ACTIVE_SHIFT)
 	modifiers = "SHIFT";
 	else if (currModifiers == GLUT_ACTIVE_CTRL)
 	modifiers = "CTRL";*/
 
-	project(toggleMode, dim, fov, asp);
+	displayProject();
 	glutPostRedisplay();
 }
 
@@ -171,7 +169,7 @@ void windowSpecial(int key, int x, int y)
 		ph %= 360;
 	}
 
-	project(toggleMode, dim, fov, asp);
+	displayProject();
 	glutPostRedisplay();
 }
 
@@ -215,38 +213,4 @@ void windowPmotion(int x, int y)
 	/*mouseX = x;
 	mouseY = y;
 	glutPostRedisplay();*/
-}
-
-/*
-* setViewAngle
-* -------
-* Define gluLookAt for Perspective View
-* Define rotation for Orthogonal View
-*/
-void setViewAngle()
-{
-	/* Perspective - Set Eye Position */
-	if (toggleMode) {
-		/* Dinamic View */
-		//double Ex = -2 *Sin(th)*Cos(ph);
-		//double Ey = +2 *Sin(ph);
-		//double Ez = +2 *Cos(th)*Sin(ph);
-
-		///* Camera/ eje position, aim of camera lens, up-vector */
-		//gluLookAt(Ex, Ey, Ez, 0, 0, 0, 0, Cos(ph), 0);
-
-		/* Dinamic View - Cursor Keys*/
-		gluLookAt(eyeP[0], eyeP[1], eyeP[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-
-	}
-	else
-	{
-		// Ortho Dynamic
-		glRotated(ph + 90, 1, 0, 0); /* start from top (+90) */
-		glRotated(th, 0, 1, 0);
-
-		// Ortho Static - Top View
-		//glRotated(90, 1, 0, 0);
-	}
-
 }

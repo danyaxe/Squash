@@ -1,0 +1,1 @@
+void errCheck(const char* where);
