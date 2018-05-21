@@ -1,3 +1,4 @@
+#pragma once
 #include "screencasts.h"
 
 /* Printing convenience */

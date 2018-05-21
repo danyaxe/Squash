@@ -1,3 +1,4 @@
+#pragma once
 /* PI definition */
 #define PI 3.1415926535898
 

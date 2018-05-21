@@ -13,9 +13,9 @@ int main(int argc, char* argv[])
 	glutSpecialFunc(windowSpecial);
 
 	glutCreateMenu(windowMenu);
-	glutAddMenuEntry("Toggle Axes [a]", 'a');
-	glutAddMenuEntry("Toggle Values [v]", 'v');
-	glutAddMenuEntry("Toggle Mode [m]", 'm');
+	glutAddMenuEntry("Toggle Axes [1]", '1');
+	glutAddMenuEntry("Toggle Values [2]", '2');
+	glutAddMenuEntry("Toggle Mode [3]", '3');
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 		
 	glutMouseFunc(windowMouse);

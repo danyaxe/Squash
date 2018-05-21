@@ -1,3 +1,4 @@
+#pragma once
 #ifndef SCREENCASTS
 #define SCREENCASTS
 

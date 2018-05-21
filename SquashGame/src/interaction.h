@@ -1,3 +1,4 @@
+#pragma once
 /* Window Key Methods */
 void windowKey(unsigned char key, int x, int y);
 void windowSpecial(int key, int x, int y);
