@@ -21,6 +21,7 @@ int main(int argc, char* argv[])
 	glutMouseFunc(windowMouse);
 	glutPassiveMotionFunc(windowPmotion);
 
+	redisplayAll();
 	glutMainLoop();
 	return 0;
 }

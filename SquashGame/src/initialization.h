@@ -1,2 +1,2 @@
 #pragma once
-void initializeGlobal(void);
+void initializeGlobal();

@@ -1,32 +1,43 @@
 #include "screencasts.h"
 
-void initializeGlobal(void)
+void initializeGlobal()
 {
-	/* GLOBALS */
+	/* WINDOW */
 	const char *windowName = "Squash";
-	int windowWidth = 500;
-	int windowHeight = 450;
+	windowWidth = DEF_WINDOW_WIDTH;
+	windowHeight = DEF_WINDOW_HEIGHT;
 
-	/* Toggles */
-	int toggleAxes = 0; /* toggle axes on and off */
-	int toggleValues = 1; /* toggle values on and off */
-	int toggleMode = 0; /* projection mode */
+	/* TOGGLE */
+	toggleAxes = DEF_AXES; /* toggle axes on and off */
+	toggleValues = DEF_PARAMS; /* toggle values on and off */
+	toggleMode = DEF_MODE; /* projection mode */
+	toggleLight = DEF_LIGHT; /* light turn on/off */
 
-	/* Display View */
-	double dim = 1.75; /*dimension of Ortho box*/
+	/* LIGHTING*/
+	lightPh = DEF_LIGHTPH;			/* light movement */
+	lightY = DEF_LIGHTY;			/* elevation of light */
+	lightD = DEF_LIGHTD;			/* light distance */
+	ambient = DEF_AMBIENT;			/* ambient intensity % */
+	diffuse = DEF_DIFFUSE;			/* diffuse intesity % */
+	specular = DEF_SPECULAR;		/* specular intensity % */
+	emission = DEF_EMISSION;		/* the color white */
+	shininess = DEF_SNININESS;		/* shininess (power of two) */
+	float shinYvec[1] = { 0.0 };	/* shiness Y Vector */
 
-	int th = 0;		/* azimuth of view angle */
-	int ph = 0;		/* elevation of view angle */
+	/* PROJECTION */
+	dim = DEF_DIM; /*dimension of Ortho box*/
+	th = DEF_TH;	/* azimuth of view angle */
+	ph = DEF_PH;	/* elevation of view angle */
+	fov = DEF_FOV;	/* field of view for perspective */
+	asp = DEF_ASP;	/* aspect ratio */
+	ecX = DEF_ECX;	/* Eye X Position */
+	ecY = DEF_ECY;	/* Eye Y Position */
+	ecZ = DEF_ECZ;	/* Eye Z Position */
+	GLfloat eyeP[] = { DEF_ECX,DEF_ECY,DEF_ECZ }; /* eye camera pointer */
 
-	int fov = 90;	/* field of view for perspective */
-	int asp = 1;	/* aspect ratio */
-
-	GLfloat eyeP[] = { 0.0,0.0,2.0 }; /* eye camera pointer */
-
-	/* Objects */
-	int objId = 0;		/* object to draw */
-	int objSlices = 16; /* slices lines of longitude */
-	int objStacks = 16; /* stacks lines of latitude */
+	/* COLORS*/
+	float white3fv[3] = { 1.0,1.0,1.0 };
+	float yellow4fv[4] = { 1.0,1.0,1.0,1.0 };
 
 	// Background Vertex
 	GLfloat vertA[3] = { 1.0, 1.0, -1.0 };

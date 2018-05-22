@@ -57,7 +57,7 @@ void displayReshape(int width, int height)
 {
 	asp = (height > 0) ? (double)width / height : 1;
 	glViewport(0, 0, width, height);
-	displayProject();
+	redisplayAll();
 }
 
 /*
@@ -65,14 +65,14 @@ void displayReshape(int width, int height)
 * ----------
 * Projection Mode
 */
-void displayProject()
+void displayProject(double fov, double asp, double dim)
 {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
 	if (toggleMode) {
 		/* perspective projection */
-		gluPerspective(fov, windowWidth / windowHeight, (dim - 0.75), (dim - 0.75) * 20);
+		gluPerspective(fov, windowWidth / windowHeight, (dim - 1.75), (dim - 1.75) * 20);
 	}
 	else {
 		/* orthogonal projection */
@@ -104,4 +104,15 @@ void display()
 	glutSwapBuffers();
 
 	errCheck("Display sanity check");
+}
+
+/*
+*  redisplayAll
+*  ------
+*  This is called whenever we need to draw the display
+*/
+void redisplayAll()
+{
+	displayProject(fov, asp, dim);
+	glutPostRedisplay();
 }

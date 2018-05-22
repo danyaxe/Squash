@@ -1,6 +1,7 @@
 #pragma once
-void displayInit(void);
-void displayEye(void);
+void displayInit();
+void displayEye();
 void displayReshape(int width, int height);
-void displayProject(void);
-void display(void);
+void displayProject(double fov, double asp, double dim);
+void display();
+void redisplayAll();
