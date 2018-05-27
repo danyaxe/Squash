@@ -9,6 +9,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
+//#include "stb_image.h"
 
 /* OpenGL */
 #ifdef USEGLEW
