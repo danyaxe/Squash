@@ -124,11 +124,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\display.cpp" />
+    <ClCompile Include="src\draw.cpp" />
+    <ClCompile Include="src\error.cpp" />
+    <ClCompile Include="src\globals.cpp" />
+    <ClCompile Include="src\initialization.cpp" />
+    <ClCompile Include="src\interaction.cpp" />
     <ClCompile Include="src\print.cpp" />
+    <ClCompile Include="src\shapes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\definition.h" />
+    <ClInclude Include="src\display.h" />
+    <ClInclude Include="src\draw.h" />
+    <ClInclude Include="src\error.h" />
+    <ClInclude Include="src\initialization.h" />
+    <ClInclude Include="src\interaction.h" />
+    <ClInclude Include="src\print.h" />
     <ClInclude Include="src\prototypes.h" />
     <ClInclude Include="src\screencasts.h" />
+    <ClInclude Include="src\shapes.h" />
+    <ClInclude Include="src\stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
