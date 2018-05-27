@@ -58,10 +58,7 @@ GLfloat ballVelocity[3] = { 0.0, 0.0, 0.0 };
 GLfloat raquetPosition[3] = { 0.0, 0.3, 0.8 };
 GLfloat raquetRotation[3] = { 0.0, 0.0, -45.0 };
 GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
-/*Raquet Mouse event*/
 
-int raquetX = 0.0;
-int taquetY = 0.0;
 
 /*Game is going on*/
 bool gameOn = true;

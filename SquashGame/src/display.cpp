@@ -162,9 +162,14 @@ void stepBall(int ms) {
 	toggleAxes = 1;
 }
 
+int oldMouseX = 0;
+int oldMouseY = 0;
 void mouseCallback(int x, int y) {
-	raquetPosition[1] = x;
-	raquetPosition[2] = y;
+	raquetPosition[1] = (x - oldMouseX)/1000;
+	raquetPosition[2] = (y - oldMouseX)/1000;
+
+	oldMouseX = x;
+	oldMouseY = y;
 }
 
 
