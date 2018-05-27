@@ -76,7 +76,12 @@ void windowKey(unsigned char key, int x, int y)
 	/* Shininess Level */
 	else if (key == 'n' && shininess > -1) shininess -= 1;
 	else if (key == 'N' && shininess < 7) shininess += 1;
-
+	else if (key == 'r' || key == 'R')
+	{
+		ballPosition[0] = 0.0;
+		ballPosition[1] = 0.0;
+		ballPosition[2] = 0.0;
+	}
 	/* Translate shininess power to value (-1 => 0) */
 	shinYvec[0] = shininess < 0 ? 0 : pow(2.0, shininess);
 
