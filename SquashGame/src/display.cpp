@@ -119,7 +119,6 @@ void redisplayAll()
 
 
 /*Animation*/
-
 void stepBall(int ms) {
 
 	GLfloat dt = ms / 1000.0;
@@ -130,23 +129,42 @@ void stepBall(int ms) {
 
 	ballVelocity[1] = ballVelocity[1] + (gravity * dt);
 
+	/*X Movement*/
 	if ((ballVelocity[0] > 0 && ballPosition[0] >= 0.9) || 
 		(ballVelocity[0] < 0 && ballPosition[0] <= -0.9)) 
 	{
 		ballVelocity[0] *= -1;
+		if (sqrt(pow((ballPosition[1] - raquetPosition[1]),2) + pow((ballPosition[2] - raquetPosition[2]), 2)) < 0.15 && gameOn) {
+			ballVelocity[0] *= -1;
+		}
+		else {
+			gameOn = false;
+			return;
+		}
+
 	}
+	/*Z Movement*/
 	if ((ballVelocity[1] > 0 && ballPosition[1] >= 0.9) ||
 		(ballVelocity[1] < 0 && ballPosition[1] <= -0.9))
 	{
-		ballVelocity[1] *= -1;
+		//ballVelocity[1] *= -1;
+		ballVelocity[1] = 0.78;
+
 	}
+	/*Y Movement*/
 	if ((ballVelocity[2] > 0 && ballPosition[2] >= 0.9) ||
 		(ballVelocity[2] < 0 && ballPosition[2] <= -0.9))
 	{
 		ballVelocity[2] *= -1;
 	}
+
 	glutTimerFunc(ms, stepBall, ms);
 	toggleAxes = 1;
+}
+
+void mouseCallback(int x, int y) {
+	raquetPosition[1] = x;
+	raquetPosition[2] = y;
 }
 
 

@@ -8,3 +8,6 @@ void redisplayAll();
 
 /*Animation*/
 void stepBall(int ms);
+
+/*Raquete move*/
+void mouseCallback(int x, int y);

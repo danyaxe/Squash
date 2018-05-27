@@ -13,6 +13,7 @@ int main(int argc, char* argv[])
 	glutReshapeFunc(displayReshape);
 	glutKeyboardFunc(windowKey);
 	glutSpecialFunc(windowSpecial);
+	glutPassiveMotionFunc(mouseCallback);
 
 	glutCreateMenu(windowMenu);
 	glutAddMenuEntry("Toggle Axes [1]", '1');
