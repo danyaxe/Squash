@@ -51,6 +51,7 @@ GLfloat vertH[3] = { -1.0,-1.0, 1.0 };
 
 /*Animation*/
 GLfloat gravity = 9.81;
+int ms = 100;
 GLfloat ballPosition[3] = { 0.0, 0.0, 0.0 };
 GLfloat ballVelocity[3] = { 0.0, 0.0, 0.0 };
 GLfloat raquetPosition[3] = { 0.0, 0.3, 0.8 };

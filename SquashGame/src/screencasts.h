@@ -83,6 +83,7 @@ extern GLfloat vertG[3];
 extern GLfloat vertH[3];
 
 extern GLfloat gravity;
+extern int ms;
 extern GLfloat ballPosition[3];
 extern GLfloat ballVelocity[3];
 extern GLfloat raquetPosition[3];

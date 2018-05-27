@@ -78,6 +78,7 @@ void windowKey(unsigned char key, int x, int y)
 	else if (key == 'N' && shininess < 7) shininess += 1;
 	else if (key == 'r' || key == 'R')
 	{
+		ms = 100;
 		ballPosition[0] = 0.0;
 		ballPosition[1] = 0.0;
 		ballPosition[2] = 0.0;

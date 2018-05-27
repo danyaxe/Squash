@@ -20,10 +20,10 @@ int main(int argc, char* argv[])
 	glutAddMenuEntry("Toggle Mode [3]", '3');
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
-	glutMouseFunc(windowMouse);
-	glutPassiveMotionFunc(windowPmotion);
+	//glutMouseFunc(windowMouse);
+	//glutPassiveMotionFunc(windowPmotion);
 	
-	glutTimerFunc(100, stepBall, 100);
+	glutTimerFunc(ms, stepBall, 100);
 	redisplayAll();
 	glutMainLoop();
 	/*Timer for animation*/

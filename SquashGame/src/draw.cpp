@@ -14,7 +14,14 @@ void drawScene()
 		drawLight();
 		drawPerspectiveRoom();
 		//sphere(0, .5, 1, 0.1, 0);
-		sphere(ballPosition[0], ballPosition[1], ballPosition[2], 0.1, 0);
+		//Regular solid sphere
+		glPushMatrix();
+		glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
+		glColor3f(1.0, 1.0, 1.0);
+		glutSolidSphere(.1, 30, 30);
+		glPopMatrix();
+		//Complex sphere with QUADS
+		//sphere(ballPosition[0], -ballPosition[1], ballPosition[2], 0.1, 0);
 		cilinder(raquetPosition[0], raquetPosition[1], raquetPosition[2], .1, .25, raquetRotation[0], raquetRotation[1], raquetRotation[2], DEF_D);
 	}
 	else
@@ -22,7 +29,14 @@ void drawScene()
 		drawLight();
 		drawOrthoRoom();
 		//sphere(0, .5, 1, 0.1, 0);
-		sphere(ballPosition[0], ballPosition[1], ballPosition[2], 0.1, 0);
+		//Regular solid sphere
+		glPushMatrix();
+		glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
+		glColor3f(1.0, 1.0, 1.0);
+		glutSolidSphere(.1, 30, 30);
+		glPopMatrix();
+		//Complex sphere with QUADS
+		//sphere(ballPosition[0], -ballPosition[1], ballPosition[2], 0.1, 0);
 		cilinder(raquetPosition[0], raquetPosition[1], raquetPosition[2], .1, .25, raquetRotation[0], raquetRotation[1], raquetRotation[2], DEF_D);
 	}
 }
