@@ -50,4 +50,9 @@ void initializeGlobal()
 	GLfloat vertF[3] = { 1.0,-1.0, 1.0 };
 	GLfloat vertG[3] = { -1.0, 1.0, 1.0 };
 	GLfloat vertH[3] = { -1.0,-1.0, 1.0 };
+
+	/*Animation*/
+	GLfloat gravity = 9.81;
+	GLfloat ballPosition[3] = { 0.0, 0.0, 0.0 };
+	GLfloat ballVelocity[3] = { 0.0, 0.0, 0.0 };
 }

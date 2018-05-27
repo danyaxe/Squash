@@ -13,13 +13,15 @@ void drawScene()
 	{
 		drawLight();
 		drawPerspectiveRoom();
-		sphere(0, .5, 1, 0.1, 0);
+		//sphere(0, .5, 1, 0.1, 0);
+		sphere(ballPosition[0], ballPosition[1], ballPosition[2], 0.1, 0);
 	}
 	else
 	{
 		drawLight();
 		drawOrthoRoom();
-		sphere(0, .5, 1, 0.1, 0);
+		//sphere(0, .5, 1, 0.1, 0);
+		sphere(ballPosition[0], ballPosition[1], ballPosition[2], 0.1, 0);
 	}
 }
 
@@ -154,11 +156,12 @@ void drawOrthoRoom()
 	glVertex3fv(vertF); //P4
 						
 						/* Front Face */
-	//glColor3f(0.0, 1.0, 1.0);	// Turquoise
-	//glVertex3fv(vertE); //P1
-	//glVertex3fv(vertF); //P2
-	//glVertex3fv(vertH); //P3
-	//glVertex3fv(vertG); //P4
+	glNormal3f(0, 0, -1);
+	glColor3f(0.0, 1.0, 1.0);	// Turquoise
+	glVertex3fv(vertE); //P1
+	glVertex3fv(vertF); //P2
+	glVertex3fv(vertH); //P3
+	glVertex3fv(vertG); //P4
 
 						/* Ceiling */
 	//glColor3f(0.0, 1.0, 0.0);	// Green
@@ -217,11 +220,12 @@ void drawPerspectiveRoom()
 	glVertex3fv(vertF); //P4
 
 						/* Front Face */
-	//glColor3f(0.0, 1.0, 1.0);	// Turquoise
-	//glVertex3fv(vertE); //P1
-	//glVertex3fv(vertF); //P2
-	//glVertex3fv(vertH); //P3
-	//glVertex3fv(vertG); //P4
+	glNormal3f(0, 0, -1); 
+	glColor3f(0.0, 1.0, 1.0);	// Turquoise
+	glVertex3fv(vertE); //P1
+	glVertex3fv(vertF); //P2
+	glVertex3fv(vertH); //P3
+	glVertex3fv(vertG); //P4
 	glEnd();
 	glPopMatrix();
 }

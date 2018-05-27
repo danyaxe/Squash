@@ -82,4 +82,8 @@ extern GLfloat vertF[3];
 extern GLfloat vertG[3];
 extern GLfloat vertH[3];
 
+extern GLfloat gravity;
+extern GLfloat ballPosition[3];
+extern GLfloat ballVelocity[3];
+
 #endif // SCREENCASTS

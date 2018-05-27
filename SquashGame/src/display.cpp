@@ -119,17 +119,15 @@ void redisplayAll()
 
 
 /*Animation*/
-GLfloat gravity = 9.81;
-GLfloat ballPosition[3] = { 0.0, 0.0, 0.0 };
-GLfloat ballVelocity[3] = { 0.0, 0.0, 0.0 };
+
 void stepBall(int ms) {
 
 	GLfloat dt = ms / 1000.0;
 	ballVelocity[2] = ballVelocity[2] + gravity * dt;
 
-	ballPosition[0] = ballPosition[0] + ballVelocity[0] * dt;
-	ballPosition[1] = ballPosition[1] + ballVelocity[1] * dt;
-	ballPosition[2] = ballPosition[2] + ballVelocity[2] * dt;
+	ballPosition[0] = ballPosition[0] + (ballVelocity[0] * dt);
+	ballPosition[1] = ballPosition[1] + (ballVelocity[1] * dt);
+	ballPosition[2] = ballPosition[2] + (ballVelocity[2] * dt);
 
 	if ((ballVelocity[0] > 0 && ballPosition[0] > 1.0) || (ballVelocity[0] < 0 && ballPosition[0] < -1.0)) {
 		ballVelocity[0] *= -1;
@@ -140,7 +138,5 @@ void stepBall(int ms) {
 	if ((ballVelocity[2] > 0 && ballPosition[2] > 1.0) || (ballVelocity[2] < 0 && ballPosition[2] < -1.0)) {
 		ballVelocity[2] *= -1;
 	}
-	sphere(ballPosition[0], ballPosition[1], ballPosition[2], 0.1, 0);
 	glutTimerFunc(ms, stepBall, ms);
-
 }
