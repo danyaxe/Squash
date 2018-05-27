@@ -55,10 +55,11 @@ GLfloat gravity = 9.81;
 int ms = 100;
 GLfloat ballPosition[3] = { 0.0, 0.0, 0.0 };
 GLfloat ballVelocity[3] = { 0.0, 0.0, 0.0 };
-GLfloat raquetPosition[3] = { 0.0, 0.3, 0.8 };
+GLfloat raquetPosition[3] = { 0.0, 0.0, 0.0 };
 GLfloat raquetRotation[3] = { 0.0, 0.0, -45.0 };
 GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
 
 
 /*Game is going on*/
 bool gameOn = true;
+int mouseX, mouseY = 0;

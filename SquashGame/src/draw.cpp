@@ -13,31 +13,55 @@ void drawScene()
 	{
 		drawLight();
 		drawPerspectiveRoom();
-		//sphere(0, .5, 1, 0.1, 0);
-		//Regular solid sphere
+
+		//Squash Ball
 		glPushMatrix();
-		glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
-		glColor3f(1.0, 1.0, 1.0);
-		glutSolidSphere(.1, 30, 30);
+			glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
+			glColor3f(1.0, 1.0, 1.0);
+			glutSolidSphere(.05, 30, 30);
 		glPopMatrix();
-		//Complex sphere with QUADS
-		//sphere(ballPosition[0], -ballPosition[1], ballPosition[2], 0.1, 0);
-		cilinder(raquetPosition[0], raquetPosition[1], raquetPosition[2], .1, .25, raquetRotation[0], raquetRotation[1], raquetRotation[2], DEF_D);
+		
+		// Raquet 
+		glPushMatrix();
+		glTranslated(raquetPosition[0], raquetPosition[1], raquetPosition[2]);
+		glScaled(.05, .05, .05);
+		glBegin(GL_QUADS);
+			glNormal3f(0, 0, 1);
+			glColor3f(0.0, 1.0, 1.0);	// Turquoise
+			glVertex3fv(vertE); //P1
+			glVertex3fv(vertF); //P2
+			glVertex3fv(vertH); //P3
+			glVertex3fv(vertG); //P4
+		glEnd();
+		glPopMatrix();
+		
+		/*cilinder(raquetPosition[0], raquetPosition[1], raquetPosition[2], .05, .25, raquetRotation[0], raquetRotation[1], raquetRotation[2], DEF_D);*/
 	}
 	else
 	{
 		drawLight();
 		drawOrthoRoom();
-		//sphere(0, .5, 1, 0.1, 0);
-		//Regular solid sphere
+		
+		//Squash Ball
 		glPushMatrix();
-		glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
-		glColor3f(1.0, 1.0, 1.0);
-		glutSolidSphere(.1, 30, 30);
+			glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
+			glColor3f(1.0, 1.0, 1.0);
+			glutSolidSphere(.05, 30, 30);
 		glPopMatrix();
-		//Complex sphere with QUADS
-		//sphere(ballPosition[0], -ballPosition[1], ballPosition[2], 0.1, 0);
-		cilinder(raquetPosition[0], raquetPosition[1], raquetPosition[2], .1, .25, raquetRotation[0], raquetRotation[1], raquetRotation[2], DEF_D);
+
+		// Raquet 
+		glPushMatrix();
+		glTranslated(raquetPosition[0], raquetPosition[1], raquetPosition[2]);
+		glScaled(.05, .05, .05);
+		glBegin(GL_QUADS);
+			glNormal3f(0, 0, 1);
+			glColor3f(0.0, 1.0, 1.0);	// Turquoise
+			glVertex3fv(vertE); //P1
+			glVertex3fv(vertF); //P2
+			glVertex3fv(vertH); //P3
+			glVertex3fv(vertG); //P4
+		glEnd();
+		glPopMatrix();
 	}
 }
 

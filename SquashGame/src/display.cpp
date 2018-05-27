@@ -121,7 +121,7 @@ void redisplayAll()
 /*Animation*/
 void stepBall(int ms) {
 
-	GLfloat dt = ms / 1000.0;
+	GLfloat dt = ms / 2000.0;
 
 	ballPosition[0] = ballPosition[0] + (ballVelocity[0] * dt);
 	ballPosition[1] = ballPosition[1] + (ballVelocity[1] * dt);
@@ -136,6 +136,7 @@ void stepBall(int ms) {
 		ballVelocity[0] *= -1;
 		if (sqrt(pow((ballPosition[1] - raquetPosition[1]),2) + pow((ballPosition[2] - raquetPosition[2]), 2)) < 0.15 && gameOn) {
 			ballVelocity[0] *= -1;
+			gameOn = true;
 		}
 		else {
 			gameOn = false;
@@ -143,13 +144,12 @@ void stepBall(int ms) {
 		}
 
 	}
-	/*Z Movement*/
+	/*Y Movement*/
 	if ((ballVelocity[1] > 0 && ballPosition[1] >= 0.9) ||
 		(ballVelocity[1] < 0 && ballPosition[1] <= -0.9))
 	{
 		//ballVelocity[1] *= -1;
-		ballVelocity[1] = 0.78;
-
+		ballVelocity[1] *= -0.8;
 	}
 	/*Y Movement*/
 	if ((ballVelocity[2] > 0 && ballPosition[2] >= 0.9) ||
@@ -157,24 +157,5 @@ void stepBall(int ms) {
 	{
 		ballVelocity[2] *= -1;
 	}
-
 	glutTimerFunc(ms, stepBall, ms);
-	toggleAxes = 1;
 }
-
-int oldMouseX = 0;
-int oldMouseY = 0;
-void mouseCallback(int x, int y) {
-	if (raquetPosition[1] < 1 && raquetPosition[1] > -1){
-		raquetPosition[1] = (x - oldMouseX) / 1000.0;
-	}
-	if (raquetPosition[2] < 1 && raquetPosition[2] > -1) {
-		raquetPosition[2] = (y - oldMousey) / 1000.0;
-	}
-	
-
-	oldMouseX = x;
-	oldMouseY = y;
-}
-
-

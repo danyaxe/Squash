@@ -26,7 +26,7 @@
 #include "definition.h"
 #include "print.h"
 #include "error.h"
-#include "shapes.h" //pendind to code
+#include "shapes.h"
 //#include "models.h" //pendind to code
 #include "interaction.h"
 #include "initialization.h"
@@ -90,5 +90,8 @@ extern GLfloat ballVelocity[3];
 extern GLfloat raquetPosition[3];
 extern GLfloat raquetRotation[3];
 extern GLfloat raquetVelocity[3];
+extern bool gameOn;
+
+extern int mouseX, mouseY;
 
 #endif // SCREENCASTS

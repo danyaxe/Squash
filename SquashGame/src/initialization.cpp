@@ -57,7 +57,9 @@ void initializeGlobal()
 	GLfloat ballPosition[3] = { 0.0, 0.0, 0.0 };
 	GLfloat ballVelocity[3] = { 0.0, 0.0, 0.0 };
 	
-	GLfloat raquetPosition[3] = { 0.0, 0.3, 0.8 };
+	GLfloat raquetPosition[3] = { 0.0, 0.0, 0.0 };
 	GLfloat raquetRotation[3] = { 15.0, 15.0, 0.0 };
 	GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
+	bool gameOn = true;
+	int mouseX, mouseY = 0;
 }
