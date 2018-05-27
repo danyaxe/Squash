@@ -1,7 +1,9 @@
 #include "screencasts.h"
 
+
 int main(int argc, char* argv[])
 {
+
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(windowWidth, windowHeight);
@@ -20,11 +22,11 @@ int main(int argc, char* argv[])
 
 	glutMouseFunc(windowMouse);
 	glutPassiveMotionFunc(windowPmotion);
-
+	
+	glutTimerFunc(100, stepBall, 100);
 	redisplayAll();
 	glutMainLoop();
-
-	glutTimerFunc(0.01, stepBall, NULL);
+	/*Timer for animation*/
 	
 	return 0;
 }

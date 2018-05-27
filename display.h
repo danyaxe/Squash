@@ -7,4 +7,4 @@ void display();
 void redisplayAll();
 
 /*Animation*/
-void stepBall(int i);
+void stepBall(int ms);
