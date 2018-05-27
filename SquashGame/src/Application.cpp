@@ -1,9 +1,11 @@
 #include "screencasts.h"
 
+
 int main(int argc, char* argv[])
 {
+
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE| GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(windowWidth, windowHeight);
 	glutCreateWindow(windowName);
 
@@ -17,11 +19,14 @@ int main(int argc, char* argv[])
 	glutAddMenuEntry("Toggle Values [2]", '2');
 	glutAddMenuEntry("Toggle Mode [3]", '3');
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
-		
+
 	glutMouseFunc(windowMouse);
 	glutPassiveMotionFunc(windowPmotion);
-
+	
+	glutTimerFunc(100, stepBall, 100);
 	redisplayAll();
 	glutMainLoop();
+	/*Timer for animation*/
+	
 	return 0;
 }
