@@ -1,8 +1,1 @@
-﻿  draw.cpp
-c:\users\alexd\desktop\squash-master\squashgame\src\draw.cpp(77): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-c:\users\alexd\desktop\squash-master\squashgame\src\draw.cpp(78): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-c:\users\alexd\desktop\squash-master\squashgame\src\draw.cpp(79): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-c:\users\alexd\desktop\squash-master\squashgame\src\draw.cpp(82): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-  interaction.cpp
-  Generating Code...
-  SquashGame.vcxproj -> C:\Users\alexd\Desktop\Squash-master\Debug\SquashGame.exe
+﻿  SquashGame.vcxproj -> C:\Users\alexd\Desktop\Squash-master\Debug\SquashGame.exe

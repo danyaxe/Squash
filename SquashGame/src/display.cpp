@@ -169,12 +169,12 @@ void stepBall(int ms) {
 		}*/
 	}
 	/*Y Movement*/
-	if (ballVelocity[1] > 0 && ballPosition[1] >= (vertA[1] - (ballSize * 2))) /*  */
+	if (-ballPosition[1] >= (vertA[1] - (ballSize * 2))) /*  */
 	{
 		ballVelocity[1] *= -0.8;
 		ballVelocity[2] *= -0.4;
 	}
-	if (ballVelocity[1] < 0 && ballPosition[1] <= (vertB[1] - (ballSize * 2))) /* Floor reduces gravity accel. 
+	if (ballVelocity[1] < 0 && -ballPosition[1] <= (vertB[1] - (ballSize * 2))) /* Floor reduces gravity accel. 
 																			 as well as Z speed*/
 	{
 		ballVelocity[1] *= -0.8;
@@ -182,13 +182,15 @@ void stepBall(int ms) {
 	}
 	/*Z Movement*/
 	
-	if (ballVelocity[2] > 0 && (ballPosition[2] >= (vertH[2] - (ballSize * 2)))) /* Front reset gravity accel.
+	if (ballVelocity[2] > 0 && (ballPosition[2] >= (vertH[2] - (ballSize * 3)))) /* Front reset gravity accel.
 																				  and increase Z speed*/
 	{
 		if (
-			((ballPosition[0] + ballSize) >= raquetPosition[0]) &&
-			((ballPosition[1] + ballSize) >= raquetPosition[1]) &&
-			((ballPosition[2] + ballSize) >= raquetPosition[2]) &&
+			((ballPosition[0] <= (raquetPosition[0] + (ballSize * 3))) && (ballPosition[0] >= (raquetPosition[0] - (ballSize * 3)))) &&
+			((-ballPosition[1] <= (raquetPosition[1] + (ballSize * 3))) && (-ballPosition[1] >= (raquetPosition[1] - (ballSize * 3)))) &&
+			((ballPosition[2] <= (raquetPosition[2] + (ballSize * 3))) 
+				&& (ballPosition[2] >= (raquetPosition[2] - (ballSize * 3)))
+				) &&
 			gameOn
 			)
 		{

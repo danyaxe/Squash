@@ -24,7 +24,7 @@ void drawScene()
 		// Raquet 
 		glPushMatrix();
 		glTranslated(raquetPosition[0], raquetPosition[1], raquetPosition[2]);
-		glScaled(.05, .05, .05);
+		glScaled(.10, .10, .10);
 		glBegin(GL_QUADS);
 			glNormal3f(0, 0, 1);
 			glColor3f(0.0, 1.0, 1.0);	// Turquoise

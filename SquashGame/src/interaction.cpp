@@ -255,7 +255,7 @@ void mouseCallback(int newMouseX, int newMouseY)
 	//Y
 	raquetPosition[1] = -((newMouseY*1.0) / 450) - ((mouseY*1.0) / 450) + 1;
 	//Z
-	raquetPosition[2] = 0.8;
+	raquetPosition[2] = 0.9;
 
 	mouseX = newMouseX;
 	mouseY = newMouseY;
