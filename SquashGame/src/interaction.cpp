@@ -78,19 +78,28 @@ void windowKey(unsigned char key, int x, int y)
 	else if (key == 'N' && shininess < 7) shininess += 1;
 	else if (key == 'r' || key == 'R')
 	{
+		gameOn = true;
+		ms = 100;
+		dt = ms / 3000.0; 
+		glutTimerFunc(ms, stepBall, ms);
+
 		ballPosition[0] = 0.0;
 		ballPosition[1] = 0.0;
 		ballPosition[2] = 0.0;
+		
 		ballVelocity[0] = 0.0;
 		ballVelocity[1] = 0.0;
-		ballVelocity[2] = 0.0;
+		ballVelocity[2] = 5.0;
 
 		raquetPosition[0] = 0.0;
 		raquetPosition[1] = 0.0;
-		raquetPosition[2] = 0.0;
+		raquetPosition[2] = 2.0;
+		
+		/*
 		raquetVelocity[0] = 0.0;
 		raquetVelocity[1] = 0.0;
 		raquetVelocity[2] = 0.0;
+		*/
 	}
 	/* Translate shininess power to value (-1 => 0) */
 	shinYvec[0] = shininess < 0 ? 0 : pow(2.0, shininess);
@@ -239,17 +248,17 @@ void windowMouse(int btn, int state, int x, int y)
 * -------
 * GLUT calls this whenever the mouse is moved
 */
-void mouseCallback(int x, int y)
+void mouseCallback(int newMouseX, int newMouseY)
 {
 	//X
-	raquetPosition[0] = (((x*1.0) / 500) - ((mouseX*1.0) / 500))-.5;
+	raquetPosition[0] = ((newMouseX*1.0) / 500) + ((mouseX*1.0) / 500) - 1;
 	//Y
-	raquetPosition[1] = -(((y*1.0) / 450) - ((mouseY*1.0) / 450))+.5;
+	raquetPosition[1] = -((newMouseY*1.0) / 450) - ((mouseY*1.0) / 450) + 1;
 	//Z
 	raquetPosition[2] = 0.8;
 
-	x = mouseX;
-	y = mouseY;
+	mouseX = newMouseX;
+	mouseY = newMouseY;
 	
 	glutPostRedisplay();
 }

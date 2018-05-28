@@ -102,7 +102,7 @@ void display()
 
 	glFlush();
 	glutSwapBuffers();
-
+	
 	errCheck("Display sanity check");
 }
 
@@ -121,41 +121,96 @@ void redisplayAll()
 /*Animation*/
 void stepBall(int ms) {
 
-	GLfloat dt = ms / 2000.0;
+	GLfloat dt = ms / 3000.0;
 
 	ballPosition[0] = ballPosition[0] + (ballVelocity[0] * dt);
 	ballPosition[1] = ballPosition[1] + (ballVelocity[1] * dt);
 	ballPosition[2] = ballPosition[2] + (ballVelocity[2] * dt);
 
+	//X - Not implemented yet
+	ballVelocity[0] = ballVelocity[0] + (0 * dt);
+	//Y
 	ballVelocity[1] = ballVelocity[1] + (gravity * dt);
+	//Z
+	//colZ = false;
+	if (colZ)
+	{
+		ballVelocity[2] = ballVelocity[2] - (2 * dt);
+	}
+	else
+	{
+		ballVelocity[2] = ballVelocity[2] + (2 * dt);
+	}
+		
+
+	/*if ((ballPosition[0]+0.1) >= raquetPosition[0] && 
+		(ballPosition[1]+0.1) >= raquetPosition[1] && 
+		(ballPosition[2]+0.1) == 0.8)
+	{
+		ballVelocity[2] *=  - (1);
+	}
+	else 
+	{
+		ballVelocity[2] *= + (1);
+	}*/
 
 	/*X Movement*/
 	if ((ballVelocity[0] > 0 && ballPosition[0] >= 0.9) || 
 		(ballVelocity[0] < 0 && ballPosition[0] <= -0.9)) 
 	{
 		ballVelocity[0] *= -1;
-		if (sqrt(pow((ballPosition[1] - raquetPosition[1]),2) + pow((ballPosition[2] - raquetPosition[2]), 2)) < 0.15 && gameOn) {
+		/*if (sqrt(pow((ballPosition[0] - raquetPosition[0]),2) + pow((ballPosition[1] - raquetPosition[1]), 2)) < 0.15 && gameOn) {
 			ballVelocity[0] *= -1;
 			gameOn = true;
 		}
 		else {
 			gameOn = false;
 			return;
-		}
-
+		}*/
 	}
 	/*Y Movement*/
-	if ((ballVelocity[1] > 0 && ballPosition[1] >= 0.9) ||
-		(ballVelocity[1] < 0 && ballPosition[1] <= -0.9))
+	if (ballVelocity[1] > 0 && ballPosition[1] >= (vertA[1] - (ballSize * 2))) /*  */
 	{
-		//ballVelocity[1] *= -1;
 		ballVelocity[1] *= -0.8;
+		ballVelocity[2] *= -0.4;
 	}
-	/*Y Movement*/
-	if ((ballVelocity[2] > 0 && ballPosition[2] >= 0.9) ||
-		(ballVelocity[2] < 0 && ballPosition[2] <= -0.9))
+	if (ballVelocity[1] < 0 && ballPosition[1] <= (vertB[1] - (ballSize * 2))) /* Floor reduces gravity accel. 
+																			 as well as Z speed*/
 	{
-		ballVelocity[2] *= -1;
+		ballVelocity[1] *= -0.8;
+		ballVelocity[2] *= -0.8;
+	}
+	/*Z Movement*/
+	
+	if (ballVelocity[2] > 0 && (ballPosition[2] >= (vertH[2] - (ballSize * 2)))) /* Front reset gravity accel.
+																				  and increase Z speed*/
+	{
+		if (
+			((ballPosition[0] + ballSize) >= raquetPosition[0]) &&
+			((ballPosition[1] + ballSize) >= raquetPosition[1]) &&
+			((ballPosition[2] + ballSize) >= raquetPosition[2]) &&
+			gameOn
+			)
+		{
+			colZ = true;
+			dt = 100 / 2000.0;
+			ballVelocity[1] = -ballVelocity[1] - ((10)* dt);
+			ballVelocity[2] = -ballVelocity[2] - ((gravity)* dt);
+			gameOn = true;
+		}
+		else
+		{
+			gameOn = false;
+			return;
+		}
+	}
+		
+	if (ballVelocity[2] < 0 && (ballPosition[2] <= (vertA[2] + (ballSize * 2)))) /* Background decrease Z speed 
+																				 as well as gravity accel.*/
+	{
+		colZ = false;
+		ballVelocity[1] = ballVelocity[1] - ((5)* dt);
+		ballVelocity[2] *= -0.8;
 	}
 	glutTimerFunc(ms, stepBall, ms);
 }

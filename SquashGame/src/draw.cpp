@@ -18,7 +18,7 @@ void drawScene()
 		glPushMatrix();
 			glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
 			glColor3f(1.0, 1.0, 1.0);
-			glutSolidSphere(.05, 30, 30);
+			glutSolidSphere(ballSize, 30, 30);
 		glPopMatrix();
 		
 		// Raquet 
@@ -260,12 +260,12 @@ void drawPerspectiveRoom()
 	glVertex3fv(vertF); //P4
 
 						/* Front Face */
-	glNormal3f(0, 0, -1); 
-	glColor3f(0.0, 1.0, 1.0);	// Turquoise
-	glVertex3fv(vertE); //P1
-	glVertex3fv(vertF); //P2
-	glVertex3fv(vertH); //P3
-	glVertex3fv(vertG); //P4
+	//glNormal3f(0, 0, -1); 
+	//glColor3f(0.0, 1.0, 1.0);	// Turquoise
+	//glVertex3fv(vertE); //P1
+	//glVertex3fv(vertF); //P2
+	//glVertex3fv(vertH); //P3
+	//glVertex3fv(vertG); //P4
 	glEnd();
 	glPopMatrix();
 }

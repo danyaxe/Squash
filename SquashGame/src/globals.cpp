@@ -54,8 +54,8 @@ GLfloat vertH[3] = { -1.0,-1.0, 1.0 };
 GLfloat gravity = 9.81;
 int ms = 100;
 GLfloat ballPosition[3] = { 0.0, 0.0, 0.0 };
-GLfloat ballVelocity[3] = { 0.0, 0.0, 0.0 };
-GLfloat raquetPosition[3] = { 0.0, 0.0, 0.0 };
+GLfloat ballVelocity[3] = { 0.0, 0.0, 5.0 };
+GLfloat raquetPosition[3] = { 0.0, 0.0, 2.0 };
 GLfloat raquetRotation[3] = { 0.0, 0.0, -45.0 };
 GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
 
@@ -63,3 +63,8 @@ GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
 /*Game is going on*/
 bool gameOn = true;
 int mouseX, mouseY = 0;
+GLfloat dt = ms / 2000.0;
+GLfloat ballSize = .05;
+bool colX = false;
+bool colY = false;
+bool colZ = false;

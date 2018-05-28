@@ -83,6 +83,7 @@ extern GLfloat vertF[3];
 extern GLfloat vertG[3];
 extern GLfloat vertH[3];
 
+/* Animation */
 extern GLfloat gravity;
 extern int ms;
 extern GLfloat ballPosition[3];
@@ -91,7 +92,10 @@ extern GLfloat raquetPosition[3];
 extern GLfloat raquetRotation[3];
 extern GLfloat raquetVelocity[3];
 extern bool gameOn;
-
+extern GLfloat dt;
 extern int mouseX, mouseY;
-
+extern bool colX;
+extern bool colY;
+extern bool colZ;
+extern GLfloat ballSize;
 #endif // SCREENCASTS
