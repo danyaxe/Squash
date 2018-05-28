@@ -5,3 +5,4 @@ void drawValues();
 void drawScene();
 void drawOrthoRoom();
 void drawPerspectiveRoom();
+bool initKinect();

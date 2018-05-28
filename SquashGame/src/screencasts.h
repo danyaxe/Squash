@@ -12,15 +12,16 @@
 //#include "stb_image.h"
 
 /* OpenGL */
-#ifdef USEGLEW
-#include <GL.glew.h>
-#endif // USEGLEW
+
+#include <GL/glew.h>
 #define GL_GLEXT_PROTOTYPES
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else 
 #include <GL/glut.h>
-#endif // __APPLE__
+#include <cmath>
+#include <cstdio>
+#include <Ole2.h>
+#include <NuiApi.h>
+#include <NuiImageCamera.h>
+#include <NuiSensor.h>
 
 /* Includes */
 #include "definition.h"

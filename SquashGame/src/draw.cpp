@@ -1,13 +1,55 @@
 #include "screencasts.h"
 
+GLuint vboId;
+GLuint cboId;
+INuiSensor* sensor;
+
+// Stores the coordinates of each joint
+Vector4 skeletonPosition[NUI_SKELETON_POSITION_COUNT];
+
+bool initKinect() {
+	// Get a working kinect sensor
+	int numSensors;
+	if (NuiGetSensorCount(&numSensors) < 0 || numSensors < 1) return false;
+	if (NuiCreateSensorByIndex(0, &sensor) < 0) return false;
+
+	// Initialize sensor
+	sensor->NuiInitialize(NUI_INITIALIZE_FLAG_USES_DEPTH_AND_PLAYER_INDEX | NUI_INITIALIZE_FLAG_USES_COLOR | NUI_INITIALIZE_FLAG_USES_SKELETON);
+	sensor->NuiSkeletonTrackingEnable(NULL, 0); // NUI_SKELETON_TRACKING_FLAG_ENABLE_SEATED_SUPPORT for only upper body
+	return sensor;
+}
+
+void getSkeletalData() {
+	NUI_SKELETON_FRAME skeletonFrame = { 0 };
+	if (sensor->NuiSkeletonGetNextFrame(0, &skeletonFrame) >= 0) {
+		sensor->NuiTransformSmooth(&skeletonFrame, NULL);
+		// Loop over all sensed skeletons
+		for (int z = 0; z < NUI_SKELETON_COUNT; ++z) {
+			const NUI_SKELETON_DATA& skeleton = skeletonFrame.SkeletonData[z];
+			// Check the state of the skeleton
+			if (skeleton.eTrackingState == NUI_SKELETON_TRACKED) {
+				// Copy the joint positions into our array
+				for (int i = 0; i < NUI_SKELETON_POSITION_COUNT; ++i) {
+					skeletonPosition[i] = skeleton.SkeletonPositions[i];
+					if (skeleton.eSkeletonPositionTrackingState[i] == NUI_SKELETON_POSITION_NOT_TRACKED) {
+						skeletonPosition[i].w = 0;
+					}
+				}
+				return; // Only take the data for one skeleton
+			}
+		}
+	}
+}
+
 /*
 *	Draw Scene
 */
 void drawScene()
 {
-
+	getSkeletalData();
 	drawAxes();
 	drawValues();
+	const Vector4& rh = skeletonPosition[NUI_SKELETON_POSITION_HAND_RIGHT];
 
 	if (toggleMode)
 	{
@@ -23,7 +65,9 @@ void drawScene()
 		
 		// Raquet 
 		glPushMatrix();
-		glTranslated(raquetPosition[0], raquetPosition[1], raquetPosition[2]);
+		if (rh.w > 0) {
+			glTranslated(rh.x/1.5, rh.y/1.5, rh.z/1.5);
+		}
 		glScaled(.10, .10, .10);
 		glBegin(GL_QUADS);
 			glNormal3f(0, 0, 1);
@@ -51,7 +95,9 @@ void drawScene()
 
 		// Raquet 
 		glPushMatrix();
-		glTranslated(raquetPosition[0], raquetPosition[1], raquetPosition[2]);
+		if (rh.w > 0) {
+			glTranslated(rh.x, rh.y, rh.z);
+		}
 		glScaled(.05, .05, .05);
 		glBegin(GL_QUADS);
 			glNormal3f(0, 0, 1);

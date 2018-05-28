@@ -1,9 +1,8 @@
 #include "screencasts.h"
 
-
 int main(int argc, char* argv[])
 {
-
+	if (!initKinect()) return 1;
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(windowWidth, windowHeight);
@@ -14,6 +13,7 @@ int main(int argc, char* argv[])
 	glutKeyboardFunc(windowKey);
 	glutSpecialFunc(windowSpecial);
 	glutPassiveMotionFunc(mouseCallback);
+	glewInit();
 
 	glutCreateMenu(windowMenu);
 	glutAddMenuEntry("Toggle Axes [1]", '1');

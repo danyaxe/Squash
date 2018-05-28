@@ -1,1 +1,11 @@
-﻿  SquashGame.vcxproj -> C:\Users\alexd\Desktop\Squash-master\Debug\SquashGame.exe
+﻿  draw.cpp
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(123): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(123): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(124): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(124): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(125): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(125): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(128): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(128): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+d:\downloads\squash-master(1)\squash-master\squashgame\src\draw.cpp(198): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  SquashGame.vcxproj -> D:\Downloads\Squash-master(1)\Squash-master\Debug\SquashGame.exe
