@@ -80,7 +80,7 @@ void windowKey(unsigned char key, int x, int y)
 	{
 		gameOn = true;
 		ms = 100;
-		dt = ms / 3000.0; 
+		dt = ms / 10000.0; 
 		glutTimerFunc(ms, stepBall, ms);
 
 		ballPosition[0] = 0.0;
@@ -255,7 +255,7 @@ void mouseCallback(int newMouseX, int newMouseY)
 	//Y
 	raquetPosition[1] = -((newMouseY*1.0) / 450) - ((mouseY*1.0) / 450) + 1;
 	//Z
-	raquetPosition[2] = 0.9;
+	raquetPosition[2] = 0.88;
 
 	mouseX = newMouseX;
 	mouseY = newMouseY;

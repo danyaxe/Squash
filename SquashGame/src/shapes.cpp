@@ -174,7 +174,6 @@ void cilinder(double x, double y, double z, double r, double h, double ox, doubl
 	glRotated(oy, 0, 1, 0);
 	glRotated(oz, 0, 0, 1);
 	glScaled(r, h, r);
-
 	glBegin(GL_QUAD_STRIP);
 	for (j = 0; j <= 360; j += deg)
 	{

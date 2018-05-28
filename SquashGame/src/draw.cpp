@@ -27,7 +27,7 @@ void drawScene()
 		glScaled(.10, .10, .10);
 		glBegin(GL_QUADS);
 			glNormal3f(0, 0, 1);
-			glColor3f(0.0, 1.0, 1.0);	// Turquoise
+			glColor4f(0.3, 1.0, 1.0,0.1);	// Turquoise
 			glVertex3fv(vertE); //P1
 			glVertex3fv(vertF); //P2
 			glVertex3fv(vertH); //P3

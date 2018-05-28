@@ -121,7 +121,7 @@ void redisplayAll()
 /*Animation*/
 void stepBall(int ms) {
 
-	GLfloat dt = ms / 3000.0;
+	GLfloat dt = ms / 10000.0;
 
 	ballPosition[0] = ballPosition[0] + (ballVelocity[0] * dt);
 	ballPosition[1] = ballPosition[1] + (ballVelocity[1] * dt);
@@ -135,50 +135,26 @@ void stepBall(int ms) {
 	//colZ = false;
 	if (colZ)
 	{
-		ballVelocity[2] = ballVelocity[2] - (2 * dt);
+		//ballVelocity[2] = ballVelocity[2] - (2 * dt);
+		ballVelocity[2] = -5.0;
 	}
 	else
 	{
-		ballVelocity[2] = ballVelocity[2] + (2 * dt);
+		//ballVelocity[2] = ballVelocity[2] + (2 * dt);
+		//ballVelocity[2] *= -0.9;
 	}
 		
-
-	/*if ((ballPosition[0]+0.1) >= raquetPosition[0] && 
-		(ballPosition[1]+0.1) >= raquetPosition[1] && 
-		(ballPosition[2]+0.1) == 0.8)
-	{
-		ballVelocity[2] *=  - (1);
-	}
-	else 
-	{
-		ballVelocity[2] *= + (1);
-	}*/
 
 	/*X Movement*/
 	if ((ballVelocity[0] > 0 && ballPosition[0] >= 0.9) || 
 		(ballVelocity[0] < 0 && ballPosition[0] <= -0.9)) 
 	{
-		ballVelocity[0] *= -1;
-		/*if (sqrt(pow((ballPosition[0] - raquetPosition[0]),2) + pow((ballPosition[1] - raquetPosition[1]), 2)) < 0.15 && gameOn) {
-			ballVelocity[0] *= -1;
-			gameOn = true;
-		}
-		else {
-			gameOn = false;
-			return;
-		}*/
+		ballVelocity[0] *= -0.9;
 	}
-	/*Y Movement*/
-	if (-ballPosition[1] >= (vertA[1] - (ballSize * 2))) /*  */
-	{
-		ballVelocity[1] *= -0.8;
-		ballVelocity[2] *= -0.4;
-	}
-	if (ballVelocity[1] < 0 && -ballPosition[1] <= (vertB[1] - (ballSize * 2))) /* Floor reduces gravity accel. 
-																			 as well as Z speed*/
-	{
-		ballVelocity[1] *= -0.8;
-		ballVelocity[2] *= -0.8;
+
+	if ((ballPosition[1] >= (vertA[1] - (ballSize * 2))) ||
+		(ballPosition[1] <= (vertB[1] + (ballSize * 2)))){
+		ballVelocity[1] *= -1.0;
 	}
 	/*Z Movement*/
 	
@@ -188,16 +164,18 @@ void stepBall(int ms) {
 		if (
 			((ballPosition[0] <= (raquetPosition[0] + (ballSize * 3))) && (ballPosition[0] >= (raquetPosition[0] - (ballSize * 3)))) &&
 			((-ballPosition[1] <= (raquetPosition[1] + (ballSize * 3))) && (-ballPosition[1] >= (raquetPosition[1] - (ballSize * 3)))) &&
-			((ballPosition[2] <= (raquetPosition[2] + (ballSize * 3))) 
-				&& (ballPosition[2] >= (raquetPosition[2] - (ballSize * 3)))
-				) &&
+			((ballPosition[2] <= (raquetPosition[2] + (ballSize * 3))) && (ballPosition[2] >= (raquetPosition[2] - (ballSize * 3)))) &&
 			gameOn
 			)
 		{
 			colZ = true;
-			dt = 100 / 2000.0;
-			ballVelocity[1] = -ballVelocity[1] - ((10)* dt);
-			ballVelocity[2] = -ballVelocity[2] - ((gravity)* dt);
+			GLfloat xDist = (ballPosition[0] - raquetPosition[0]) * 10;
+			ballVelocity[0] = xDist * 3;
+
+
+			ballVelocity[1] = -ballVelocity[1];
+			ballVelocity[2] = 5.0;
+			
 			gameOn = true;
 		}
 		else

@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 	//glutMouseFunc(windowMouse);
 	//glutPassiveMotionFunc(windowPmotion);
 	
-	glutTimerFunc(ms, stepBall, 50);
+	glutTimerFunc(ms, stepBall, ms);
 	redisplayAll();
 	glutMainLoop();
 	/*Timer for animation*/
