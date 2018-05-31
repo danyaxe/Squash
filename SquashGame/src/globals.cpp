@@ -38,33 +38,33 @@ GLfloat eyeP[] = { DEF_ECX,DEF_ECY,DEF_ECZ }; /* eye camera pointer */
 float white3fv[3] = { 1.0,1.0,1.0 };
 float yellow4fv[4] = { 1.0,1.0,1.0,1.0 };
 
-// Background Vertex
+/* Room Vertex */
 GLfloat vertA[3] = { 1.0, 1.0, -1.0 };
 GLfloat vertB[3] = { 1.0,-1.0, -1.0 };
 GLfloat vertC[3] = { -1.0, 1.0, -1.0 };
 GLfloat vertD[3] = { -1.0,-1.0, -1.0 };
-
-// Front Vertex
 GLfloat vertE[3] = { 1.0, 1.0, 1.0 };
 GLfloat vertF[3] = { 1.0,-1.0, 1.0 };
 GLfloat vertG[3] = { -1.0, 1.0, 1.0 };
 GLfloat vertH[3] = { -1.0,-1.0, 1.0 };
 
 /*Animation*/
-GLfloat gravity = 9.81;
 int ms = 100;
+GLfloat gravity = 9.81;
 GLfloat ballPosition[3] = { 0.0, 0.0, 0.0 };
-GLfloat ballVelocity[3] = { 0.0, 0.0, 0.0 };
+GLfloat ballVelocity[3] = { 0.0, 0.0, 5.0 };
 GLfloat raquetPosition[3] = { 0.0, 0.0, 2.0 };
-GLfloat raquetRotation[3] = { 0.0, 0.0, -45.0 };
-GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
+//GLfloat raquetRotation[3] = { 15.0, 15.0, 0.0 };
+//GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
 
-
-/*Game is going on*/
+/* Game is going on */
+int mouseX = 0;
+int mouseY = 0;
 bool gameOn = true;
-int mouseX, mouseY = 0;
-GLfloat dt = ms / 2000.0;
-GLfloat ballSize = .05;
-bool colX = false;
-bool colY = false;
 bool colZ = false;
+GLfloat ballSize = .05;
+GLfloat dt = ms / 10000.0;
+
+/* Textures */
+unsigned int textures[5];
+int currentTexture = T_DEF;

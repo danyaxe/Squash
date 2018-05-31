@@ -25,14 +25,16 @@ void displayInit()
 void displayEye()
 {
 	if (toggleMode) {
-		/* Perspective Dinamic View */
+		/* 
+		////Perspective Dinamic View 
 		//double Ex = -2 *Sin(th)*Cos(ph);
 		//double Ey = +2 *Sin(ph);
 		//double Ez = +2 *Cos(th)*Sin(ph);
 
-		///* Camera/ eje position, aim of camera lens, up-vector */
+		//// Camera/ eje position, aim of camera lens, up-vector
 		//gluLookAt(Ex, Ey, Ez, 0, 0, 0, 0, Cos(ph), 0);
-
+		*/
+		
 		/* Dinamic View - Cursor Keys*/
 		gluLookAt(eyeP[0], eyeP[1], eyeP[2], 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 
@@ -42,9 +44,6 @@ void displayEye()
 		/* Ortho Dinamic View */
 		glRotated(ph + 90, 1, 0, 0); /* start from top (+90) */
 		glRotated(th, 0, 1, 0);
-
-		/* Ortho Dinamic View - Top View */
-		//glRotated(90, 1, 0, 0);
 	}
 }
 
@@ -118,7 +117,11 @@ void redisplayAll()
 }
 
 
-/*Animation*/
+/*
+*  stepBall
+*  ------
+*  This function allows the Animation of the ball
+*/
 void stepBall(int ms) {
 
 	GLfloat dt = ms / 10000.0;
@@ -127,23 +130,18 @@ void stepBall(int ms) {
 	ballPosition[1] = ballPosition[1] + (ballVelocity[1] * dt);
 	ballPosition[2] = ballPosition[2] + (ballVelocity[2] * dt);
 
-	//X - Not implemented yet
-	ballVelocity[0] = ballVelocity[0] + (0 * dt);
+
+	/* Velocity Changes */
+	//X
+	ballVelocity[0] = ballVelocity[0];
 	//Y
 	ballVelocity[1] = ballVelocity[1] + (gravity * dt);
 	//Z
-	//colZ = false;
 	if (colZ)
 	{
-		//ballVelocity[2] = ballVelocity[2] - (2 * dt);
 		ballVelocity[2] = -5.0;
 	}
-	else
-	{
-		//ballVelocity[2] = ballVelocity[2] + (2 * dt);
-		//ballVelocity[2] *= -0.9;
-	}
-		
+
 
 	/*X Movement*/
 	if ((ballVelocity[0] > 0 && ballPosition[0] >= 0.9) || 
@@ -151,13 +149,15 @@ void stepBall(int ms) {
 	{
 		ballVelocity[0] *= -0.9;
 	}
-
+	
+	/*Y Movement*/
 	if ((ballPosition[1] >= (vertA[1] - (ballSize * 2))) ||
-		(ballPosition[1] <= (vertB[1] + (ballSize * 2)))){
+		(ballPosition[1] <= (vertB[1] + (ballSize * 2))))
+	{
 		ballVelocity[1] *= -1.0;
 	}
+
 	/*Z Movement*/
-	
 	if (ballVelocity[2] > 0 && (ballPosition[2] >= (vertH[2] - (ballSize * 3)))) /* Front reset gravity accel.
 																				  and increase Z speed*/
 	{
@@ -169,9 +169,9 @@ void stepBall(int ms) {
 			)
 		{
 			colZ = true;
+			/* Raquet Effect as per hit box raquet position */
 			GLfloat xDist = (ballPosition[0] - raquetPosition[0]) * 10;
 			ballVelocity[0] = xDist * 3;
-
 
 			ballVelocity[1] = -ballVelocity[1];
 			ballVelocity[2] = 5.0;
@@ -180,6 +180,7 @@ void stepBall(int ms) {
 		}
 		else
 		{
+			/* End game - PRESS R to restart */
 			gameOn = false;
 			return;
 		}

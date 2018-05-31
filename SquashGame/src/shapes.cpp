@@ -147,9 +147,7 @@ void sphere(double x, double y, double z, double r, double rot)
 		glBegin(GL_QUAD_STRIP);
 		for (th2 = 0; th2 <= 360; th2 += 2 * DEF_D)
 		{
-			glColor3f(0.0, 1.0, 0.0);
 			vertex(th2, ph2);
-			glColor3f(0.0, 0.0, 1.0);
 			vertex(th2, ph2 + DEF_D);
 		}
 		glEnd();

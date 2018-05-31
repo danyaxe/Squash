@@ -12,7 +12,7 @@
 #define DEF_WINDOW_WIDTH 500
 
 /* Projection */
-#define DEF_DIM 2.75
+#define DEF_DIM 2.75 
 #define DEF_TH 45
 #define DEF_PH -75
 #define DEF_FOV 90
@@ -39,3 +39,10 @@
 #define DEF_SNININESS 0
 #define DEF_LIGHTY 0.8 //.6//2
 #define DEF_LIGHTPH 1530 //90
+
+/* Textures */
+#define T_DEF 0
+#define T_FLOOR 1
+#define T_WALL 2
+#define T_CEIL 3
+#define T_BALL 4

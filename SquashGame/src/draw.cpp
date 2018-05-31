@@ -15,12 +15,15 @@ void drawScene()
 		drawPerspectiveRoom();
 
 		//Squash Ball
-		glPushMatrix();
-			glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
-			glColor3f(1.0, 1.0, 1.0);
-			glutSolidSphere(ballSize, 30, 30);
-		glPopMatrix();
+		glBindTexture(GL_TEXTURE_2D, 0); 
 		
+		/* Texture for Ball */
+		currentTexture = textures[T_DEF];
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, currentTexture);
+			sphere(ballPosition[0], -ballPosition[1], ballPosition[2], ballSize, 0);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
 		// Raquet 
 		glPushMatrix();
 		glTranslated(raquetPosition[0], raquetPosition[1], raquetPosition[2]);
@@ -43,11 +46,18 @@ void drawScene()
 		drawOrthoRoom();
 		
 		//Squash Ball
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		/* Texture for Ball */
+		currentTexture = textures[T_DEF];
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, currentTexture);
+
 		glPushMatrix();
 			glTranslated(ballPosition[0], -ballPosition[1], ballPosition[2]);
-			glColor3f(1.0, 1.0, 1.0);
 			glutSolidSphere(.05, 30, 30);
 		glPopMatrix();
+		glBindTexture(GL_TEXTURE_2D, 0);
 
 		// Raquet 
 		glPushMatrix();
@@ -165,107 +175,139 @@ void drawOrthoRoom()
 	// NO CEILING NO FRONT FACES
 	glPushMatrix();
 	glTranslated(0.0, 0.0, 0.0);
+
+	/* Texture of Walls*/
+	glBindTexture(GL_TEXTURE_2D, 0);
+	currentTexture = textures[T_WALL];
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, currentTexture);
+
+	/* Background Room */
 	glBegin(GL_QUADS);
-	// Background Room
 	glNormal3f(0, 0, 1);
-	glColor3f(1.0, 1.0, 0.0);	// Yellow 
-	glVertex3fv(vertA); //P1
-	glVertex3fv(vertB); //P2
-	glVertex3fv(vertD); //P3
-	glVertex3fv(vertC); //P4
-						// Right room side
-	glNormal3f(-1, 0, 0);
-	glColor3f(1.0, 0.0, 0.0);	// Red
-	glVertex3fv(vertA); //P1
-	glVertex3fv(vertB); //P2
-	glVertex3fv(vertF); //P3
-	glVertex3fv(vertE); //P4
-						// Left room side
-	glNormal3f(1, 0, 0);
-	glColor3f(0.0, 0.0, 1.0);	// Blue
-	glVertex3fv(vertC); //P1
-	glVertex3fv(vertD); //P2
-	glVertex3fv(vertH); //P3
-	glVertex3fv(vertG); //P4
-						// Floor
-	glNormal3f(0, 1, 0); 
-	glColor3f(1.0, 0.0, 1.0);	// Pink
-	glVertex3fv(vertB); //P1
-	glVertex3fv(vertD); //P2
-	glVertex3fv(vertH); //P3
-	glVertex3fv(vertF); //P4
-						
-						/* Front Face */
-	//glNormal3f(0, 0, -1);
-	//glColor3f(0.0, 1.0, 1.0);	// Turquoise
-	//glVertex3fv(vertE); //P1
-	//glVertex3fv(vertF); //P2
-	//glVertex3fv(vertH); //P3
-	//glVertex3fv(vertG); //P4
 
-						/* Ceiling */
-	//glColor3f(0.0, 1.0, 0.0);	// Green
-	//glVertex3fv(vertA); //P1
-	//glVertex3fv(vertC); //P2
-	//glVertex3fv(vertG); //P3
-	//glVertex3fv(vertE); //P4
-
+	glTexCoord2f(1, 1); glVertex3fv(vertA); //P1
+	glTexCoord2f(1, 0); glVertex3fv(vertB); //P2
+	glTexCoord2f(0, 0); glVertex3fv(vertD); //P3
+	glTexCoord2f(0, 1); glVertex3fv(vertC); //P4
 	glEnd();
+
+	/* Right room side */
+	glBegin(GL_QUADS);
+	glNormal3f(-1, 0, 0);
+
+	glTexCoord2f(1, 0); glVertex3fv(vertA); //P1
+	glTexCoord2f(0, 0); glVertex3fv(vertB); //P2
+	glTexCoord2f(0, 1); glVertex3fv(vertF); //P3
+	glTexCoord2f(1, 1); glVertex3fv(vertE); //P4
+	glEnd();
+
+	/* Left room side */
+	glBegin(GL_QUADS);
+	glNormal3f(1, 0, 0);
+
+	glTexCoord2f(1, 1); glVertex3fv(vertC); //P1
+	glTexCoord2f(1, 0); glVertex3fv(vertD); //P2
+	glTexCoord2f(0, 0); glVertex3fv(vertH); //P3
+	glTexCoord2f(0, 1); glVertex3fv(vertG); //P4
+	glEnd();
+
+	/* Texture of Floor*/
+	glBindTexture(GL_TEXTURE_2D, 0);
+	currentTexture = textures[T_FLOOR];
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, currentTexture);
+
+	/* Floor */
+	glBegin(GL_QUADS);
+	glNormal3f(0, 1, 0);
+
+	glTexCoord2f(1, 1); glVertex3fv(vertB); //P1
+	glTexCoord2f(0, 1); glVertex3fv(vertD); //P2
+	glTexCoord2f(0, 0); glVertex3fv(vertH); //P3
+	glTexCoord2f(1, 0); glVertex3fv(vertF); //P4
+	glEnd();
+	glBindTexture(GL_TEXTURE_2D, 0);
+
 	glPopMatrix();
 }
 
-/*
-*	Draw Perspective Room
-*/
 void drawPerspectiveRoom()
 {
-	// NO FRONT FACE
+	/* NO FRONT FACE */
 	glPushMatrix();
 	glTranslated(0.0, 0.0, 0.0);
-	glBegin(GL_QUADS);
-	// Background Room
-	glNormal3f(0, 0, 1);
-	glColor3f(1.0, 1.0, 0.0);	// Yellow 
-	glVertex3fv(vertA); //P1
-	glVertex3fv(vertB); //P2
-	glVertex3fv(vertD); //P3
-	glVertex3fv(vertC); //P4
-						// Right room side
-	glNormal3f(-1, 0, 0);
-	glColor3f(1.0, 0.0, 0.0);	// Red
-	glVertex3fv(vertA); //P1
-	glVertex3fv(vertB); //P2
-	glVertex3fv(vertF); //P3
-	glVertex3fv(vertE); //P4
-						// Ceiling
-	glNormal3f(0, -1, 0);
-	glColor3f(0.0, 1.0, 0.0);	// Green
-	glVertex3fv(vertA); //P1
-	glVertex3fv(vertC); //P2
-	glVertex3fv(vertG); //P3
-	glVertex3fv(vertE); //P4
-						// Left room side
-	glNormal3f(1, 0, 0);
-	glColor3f(0.0, 0.0, 1.0);	// Blue
-	glVertex3fv(vertC); //P1
-	glVertex3fv(vertD); //P2
-	glVertex3fv(vertH); //P3
-	glVertex3fv(vertG); //P4
-						// Floor
-	glNormal3f(0, 1, 0);
-	glColor3f(1.0, 0.0, 1.0);	// Pink
-	glVertex3fv(vertB); //P1
-	glVertex3fv(vertD); //P2
-	glVertex3fv(vertH); //P3
-	glVertex3fv(vertF); //P4
 
-						/* Front Face */
-	//glNormal3f(0, 0, -1); 
-	//glColor3f(0.0, 1.0, 1.0);	// Turquoise
-	//glVertex3fv(vertE); //P1
-	//glVertex3fv(vertF); //P2
-	//glVertex3fv(vertH); //P3
-	//glVertex3fv(vertG); //P4
+	/* Texture of Walls*/
+	glBindTexture(GL_TEXTURE_2D, 0);
+	currentTexture = textures[T_WALL];
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, currentTexture);
+
+	/* Background Room */
+	glBegin(GL_QUADS);
+	glNormal3f(0, 0, 1);
+	
+	glTexCoord2f(1, 1); glVertex3fv(vertA); //P1
+	glTexCoord2f(1, 0); glVertex3fv(vertB); //P2
+	glTexCoord2f(0, 0); glVertex3fv(vertD); //P3
+	glTexCoord2f(0, 1); glVertex3fv(vertC); //P4
 	glEnd();
+
+	/* Right room side */
+	glBegin(GL_QUADS);
+	glNormal3f(-1, 0, 0);
+	
+	glTexCoord2f(1, 0); glVertex3fv(vertA); //P1
+	glTexCoord2f(0, 0); glVertex3fv(vertB); //P2
+	glTexCoord2f(0, 1); glVertex3fv(vertF); //P3
+	glTexCoord2f(1, 1); glVertex3fv(vertE); //P4
+	glEnd();
+
+	/* Left room side */
+	glBegin(GL_QUADS);
+	glNormal3f(1, 0, 0);
+	
+	glTexCoord2f(1, 1); glVertex3fv(vertC); //P1
+	glTexCoord2f(1, 0); glVertex3fv(vertD); //P2
+	glTexCoord2f(0, 0); glVertex3fv(vertH); //P3
+	glTexCoord2f(0, 1); glVertex3fv(vertG); //P4
+	glEnd();
+
+
+	/* Texture of Ceiling*/
+	glBindTexture(GL_TEXTURE_2D, 0);
+	currentTexture = textures[T_CEIL];
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, currentTexture);
+
+	/* Ceiling */
+	glBegin(GL_QUADS);
+	glNormal3f(0, -1, 0);
+	
+	glTexCoord2f(0, 1); glVertex3fv(vertA); //P1
+	glTexCoord2f(0, 0); glVertex3fv(vertC); //P2
+	glTexCoord2f(1, 0); glVertex3fv(vertG); //P3
+	glTexCoord2f(1, 1); glVertex3fv(vertE); //P4
+	glEnd();
+
+
+	/* Texture of Floor*/
+	glBindTexture(GL_TEXTURE_2D, 0); 
+	currentTexture = textures[T_FLOOR];
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, currentTexture);
+	
+	/* Floor */
+	glBegin(GL_QUADS);
+	glNormal3f(0, 1, 0);
+	
+	glTexCoord2f(1, 1); glVertex3fv(vertB); //P1
+	glTexCoord2f(0, 1); glVertex3fv(vertD); //P2
+	glTexCoord2f(0, 0); glVertex3fv(vertH); //P3
+	glTexCoord2f(1, 0); glVertex3fv(vertF); //P4
+	glEnd();
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
 	glPopMatrix();
 }

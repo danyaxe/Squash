@@ -1,6 +1,17 @@
 #include "screencasts.h"
-
-
+//
+//namespace
+//{
+//	class GLFunc
+//	{
+//	public:
+//		GLFunc()
+//		{
+//			glActiveTexture = (PFNGLACTIVETEXTUREPROC)wglGetProcAddress("glActiveTexture");
+//		}
+//		PFNGLACTIVETEXTUREPROC glActiveTexture;
+//	};
+//}
 int main(int argc, char* argv[])
 {
 
@@ -21,13 +32,12 @@ int main(int argc, char* argv[])
 	glutAddMenuEntry("Toggle Mode [3]", '3');
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
-	//glutMouseFunc(windowMouse);
-	//glutPassiveMotionFunc(windowPmotion);
-	
-	glutTimerFunc(ms, stepBall, ms);
+	glutTimerFunc(ms, stepBall, ms); /* Timer for animation */
+
+	initializeTextures();
+
 	redisplayAll();
 	glutMainLoop();
-	/*Timer for animation*/
 	
 	return 0;
 }

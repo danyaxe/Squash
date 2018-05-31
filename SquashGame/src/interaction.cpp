@@ -78,9 +78,10 @@ void windowKey(unsigned char key, int x, int y)
 	else if (key == 'N' && shininess < 7) shininess += 1;
 	else if (key == 'r' || key == 'R')
 	{
-		gameOn = true;
-		ms = 100;
 		dt = ms / 10000.0; 
+		gameOn = true;
+		colZ = false;
+		
 		glutTimerFunc(ms, stepBall, ms);
 
 		ballPosition[0] = 0.0;
@@ -94,12 +95,6 @@ void windowKey(unsigned char key, int x, int y)
 		raquetPosition[0] = 0.0;
 		raquetPosition[1] = 0.0;
 		raquetPosition[2] = 2.0;
-		
-		/*
-		raquetVelocity[0] = 0.0;
-		raquetVelocity[1] = 0.0;
-		raquetVelocity[2] = 0.0;
-		*/
 	}
 	/* Translate shininess power to value (-1 => 0) */
 	shinYvec[0] = shininess < 0 ? 0 : pow(2.0, shininess);

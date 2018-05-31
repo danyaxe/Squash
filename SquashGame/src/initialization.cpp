@@ -39,32 +39,51 @@ void initializeGlobal()
 	float white3fv[3] = { 1.0,1.0,1.0 };
 	float yellow4fv[4] = { 1.0,1.0,1.0,1.0 };
 
-	// Background Vertex
+	/* Room Vertex */
 	GLfloat vertA[3] = { 1.0, 1.0, -1.0 };
 	GLfloat vertB[3] = { 1.0,-1.0, -1.0 };
 	GLfloat vertC[3] = { -1.0, 1.0, -1.0 };
 	GLfloat vertD[3] = { -1.0,-1.0, -1.0 };
-
-	// Front Vertex
 	GLfloat vertE[3] = { 1.0, 1.0, 1.0 };
 	GLfloat vertF[3] = { 1.0,-1.0, 1.0 };
 	GLfloat vertG[3] = { -1.0, 1.0, 1.0 };
 	GLfloat vertH[3] = { -1.0,-1.0, 1.0 };
 
 	/*Animation*/
+	int ms = 100; 
 	GLfloat gravity = 9.81;
-	int ms = 100;
 	GLfloat ballPosition[3] = { 0.0, 0.0, 0.0 };
 	GLfloat ballVelocity[3] = { 0.0, 0.0, 5.0 };
-	
 	GLfloat raquetPosition[3] = { 0.0, 0.0, 2.0 };
-	GLfloat raquetRotation[3] = { 15.0, 15.0, 0.0 };
-	GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
-	bool gameOn = true;
-	int mouseX, mouseY = 0;
-	GLfloat dt = ms / 2000.0;
-	GLfloat ballSize = .05;
-	bool colX = false;
-	bool colY = false;
-	bool colZ = false;
+	//GLfloat raquetRotation[3] = { 15.0, 15.0, 0.0 };
+	//GLfloat raquetVelocity[3] = { 0.0, 0.0, 0.0 };
+
+	/* Game is going on */
+	mouseX = 0;
+	mouseY = 0;
+	gameOn = true;
+	colZ = false; 
+	ballSize = .05; 
+	dt = ms / 10000.0;
+	
+	/* Textures */
+	currentTexture = T_DEF;
+}
+
+
+void initializeTextures()
+{
+	/*
+	* T_DEF 0
+	* T_FLOOR 1
+	* T_WALL 2
+	* T_CEIL 3
+	* T_BALL 4
+	*/
+
+	textures[T_DEF] = loadBMP("C:/Users/alexd/Documents/Squash-master/SquashGame/src/default.png");
+	textures[T_FLOOR] = loadBMP("C:/Users/alexd/Documents/Squash-master/SquashGame/src/floor.png");
+	textures[T_WALL] = loadBMP("C:/Users/alexd/Documents/Squash-master/SquashGame/src/wall.png");
+	textures[T_CEIL] = loadBMP("C:/Users/alexd/Documents/Squash-master/SquashGame/src/ceil.png");
+	textures[T_BALL] = loadBMP("C:/Users/alexd/Documents/Squash-master/SquashGame/src/ball.png");
 }
