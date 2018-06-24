@@ -6,6 +6,17 @@ void initializeGlobal()
 	const char *windowName = "Squash";
 	windowWidth = DEF_WINDOW_WIDTH;
 	windowHeight = DEF_WINDOW_HEIGHT;
+	score = 0;
+	gameOverText = 0;
+	name = "";
+	hwnd = GetConsoleWindow();
+
+	/*DB*/
+	usersFileName = "users.json";
+	scoreboardFileName = "scoreboard.json";
+	settingsFileName = "settings.json";
+	openDir = "";
+	saveDir = "";
 
 	/* TOGGLE */
 	toggleAxes = DEF_AXES; /* toggle axes on and off */
@@ -86,4 +97,31 @@ void initializeTextures()
 	textures[T_WALL] = loadBMP("C:/Users/alexd/Documents/Squash-master/SquashGame/src/wall.png");
 	textures[T_CEIL] = loadBMP("C:/Users/alexd/Documents/Squash-master/SquashGame/src/ceil.png");
 	textures[T_BALL] = loadBMP("C:/Users/alexd/Documents/Squash-master/SquashGame/src/ball.png");
+}
+
+void initialize()
+{
+	/*DB*/
+	usersFileName = "users.json";
+	scoreboardFileName = "scoreboard.json";
+	settingsFileName = "settings.json";
+	openDir = "";
+	saveDir = "";
+
+	ifstream f(openDir + usersFileName);
+	ifstream g(openDir + scoreboardFileName);
+	ifstream h(openDir + settingsFileName);
+
+	if (!(bool)f)
+		clearUserList();
+
+	if (!(bool)g)
+		clearScoreboard();
+
+	if (!(bool)h)
+		defaultSettings();
+
+	f.close();
+	g.close();
+	h.close();
 }

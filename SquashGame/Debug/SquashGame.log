@@ -1,19 +1,11 @@
-﻿  Application.cpp
-  display.cpp
-  draw.cpp
-c:\users\alexd\documents\squash-master\squashgame\src\draw.cpp(95): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-c:\users\alexd\documents\squash-master\squashgame\src\draw.cpp(96): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-c:\users\alexd\documents\squash-master\squashgame\src\draw.cpp(97): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-c:\users\alexd\documents\squash-master\squashgame\src\draw.cpp(100): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-  error.cpp
-  globals.cpp
+﻿  Database.cpp
 c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
-  c:\users\alexd\documents\squash-master\dependencies\glfw\include\glfw\glfw3.h(98): note: see previous definition of 'APIENTRY'
-  initialization.cpp
+  c:\users\alexd\desktop\squash-master\dependencies\glfw\include\glfw\glfw3.h(98): note: see previous definition of 'APIENTRY'
+  display.cpp
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
+  c:\users\alexd\desktop\squash-master\dependencies\glfw\include\glfw\glfw3.h(98): note: see previous definition of 'APIENTRY'
   interaction.cpp
-  print.cpp
-  shapes.cpp
-c:\users\alexd\documents\squash-master\squashgame\src\shapes.cpp(127): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-  textures.cpp
+c:\program files (x86)\windows kits\10\include\10.0.16299.0\shared\minwindef.h(130): warning C4005: 'APIENTRY': macro redefinition
+  c:\users\alexd\desktop\squash-master\dependencies\glfw\include\glfw\glfw3.h(98): note: see previous definition of 'APIENTRY'
   Generating Code...
-  SquashGame.vcxproj -> C:\Users\alexd\Documents\Squash-master\Debug\SquashGame.exe
+  SquashGame.vcxproj -> C:\Users\alexd\Desktop\Squash-master\Debug\SquashGame.exe

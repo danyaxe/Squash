@@ -23,7 +23,7 @@
 
 /* Draw defaults */
 #define DEF_AXES 0
-#define DEF_PARAMS 0
+#define DEF_PARAMS 1
 #define DEF_MODE 1
 
 /* Shape degrees */

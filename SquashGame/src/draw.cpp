@@ -159,12 +159,21 @@ void drawAxes()
 void drawValues()
 {
 	if (toggleValues) {
-		glColor3f(0.8, 0.8, 0.8);
-		glRasterPos2d(50, 50);
-		print("View Angle (th,ph) =(%d, %d)", th, ph);
-		print("Projection mode= (%s)", toggleMode ? "Perspective" : "Orthogonal");
+		glColor3fv(white3fv);
+		glRasterPos3d(-0.9, 0.7, -0.8);
+		print("Score: = %d", score);
+		if (gameOverText == 1)
+		{
+			glColor3d(1, 1, 1);
+			glRasterPos3d(-0.35, 0.2, -0.1);
+			print("GAME OVER");
+			glColor3d(1, 1, 1);
+			glRasterPos3d(-0.6, 0.05, -0.1);
+			//print("PRESS 'R' to play again");
+			print("LEFT CLICK to play again");
+		}
 	}
-	errCheck("error in draw values");
+	errCheck("Error in drawValues()");
 }
 
 /*

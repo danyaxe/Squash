@@ -176,11 +176,15 @@ void stepBall(int ms) {
 			ballVelocity[1] = -ballVelocity[1];
 			ballVelocity[2] = 5.0;
 			
+			score++;
 			gameOn = true;
 		}
 		else
 		{
 			/* End game - PRESS R to restart */
+			addScoreboard(name, score);
+
+			gameOverText = 1;
 			gameOn = false;
 			return;
 		}

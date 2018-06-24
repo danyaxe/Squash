@@ -9,6 +9,11 @@
 #include <GLFW\glfw3.h>
 
 /* Standard Headers */
+#include <Windows.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -19,16 +24,15 @@
 
 #include "stb_image.h"
 
-
-
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else 
-#include <GLFW\glut.h>
+#include <GL/glut.h>
 #endif // __APPLE__
 
 /* Includes */
 #include "definition.h"
+#include "Database.h"
 #include "print.h"
 #include "error.h"
 #include "shapes.h"
@@ -37,6 +41,11 @@
 #include "initialization.h"
 #include "draw.h"
 #include "display.h"
+#include "json.hpp"
+
+
+using namespace std;
+using nlohmann::json;
 
 /* Global variables (externs) */
 /* Global variables must be initializaed*/
@@ -45,6 +54,17 @@
 extern const char *windowName;
 extern int windowWidth;
 extern int windowHeight;
+extern int score;
+extern string name;
+extern int gameOverText;
+extern HWND hwnd;
+
+/*DB*/
+extern string usersFileName;
+extern string scoreboardFileName;
+extern string settingsFileName;
+extern string openDir;
+extern string saveDir;
 
 /* Toggles */
 extern int toggleAxes;	/* toggle axes on and off */

@@ -76,25 +76,50 @@ void windowKey(unsigned char key, int x, int y)
 	/* Shininess Level */
 	else if (key == 'n' && shininess > -1) shininess -= 1;
 	else if (key == 'N' && shininess < 7) shininess += 1;
+	
+	/* PRESS R to restart */
 	else if (key == 'r' || key == 'R')
 	{
-		dt = ms / 10000.0; 
-		gameOn = true;
-		colZ = false;
-		
-		glutTimerFunc(ms, stepBall, ms);
+		hwnd = GetConsoleWindow();
+		ShowWindow(hwnd, SW_RESTORE);
+		//Test: manually click another window, to bring that other window on top
+		Sleep(1);
 
-		ballPosition[0] = 0.0;
-		ballPosition[1] = 0.0;
-		ballPosition[2] = 0.0;
-		
-		ballVelocity[0] = 0.0;
-		ballVelocity[1] = 0.0;
-		ballVelocity[2] = 5.0;
+		//this window should restore itself
+		show(hwnd);
 
-		raquetPosition[0] = 0.0;
-		raquetPosition[1] = 0.0;
-		raquetPosition[2] = 2.0;
+		score = 0;
+		gameOverText = 0;
+		name = "";
+		cout << "Please enter your name: ";
+		cin >> name;
+		system("cls");
+		
+		ShowWindow(hwnd, SW_SHOWMINIMIZED);
+		show(hwnd);
+
+		int validName = name.length() - 1;
+
+		if (validName >= 0)
+		{
+			dt = ms / 10000.0;
+			gameOn = true;
+			colZ = false;
+
+			glutTimerFunc(ms, stepBall, ms);
+
+			ballPosition[0] = 0.0;
+			ballPosition[1] = 0.0;
+			ballPosition[2] = 0.0;
+
+			ballVelocity[0] = 0.0;
+			ballVelocity[1] = 0.0;
+			ballVelocity[2] = 5.0;
+
+			raquetPosition[0] = 0.0;
+			raquetPosition[1] = 0.0;
+			raquetPosition[2] = 2.0;
+		}
 	}
 	/* Translate shininess power to value (-1 => 0) */
 	shinYvec[0] = shininess < 0 ? 0 : pow(2.0, shininess);
@@ -225,17 +250,54 @@ void windowMenu(int value)
 */
 void windowMouse(int btn, int state, int x, int y)
 {
-	/*if (btn == GLUT_LEFT_BUTTON)
-	mouseBtnPressed = "LEFT";
-	else if (btn == GLUT_RIGHT_BUTTON)
-	mouseBtnPressed = "RIGHT";
+	if (btn == GLUT_LEFT_BUTTON)
+		if (state == GLUT_DOWN)
+		{
+			hwnd = GetConsoleWindow();
+			ShowWindow(hwnd, SW_RESTORE);
+			//Test: manually click another window, to bring that other window on top
+			Sleep(1);
 
-	if (state == GLUT_DOWN)
-	mouseState = "down";
-	else if (state == GLUT_UP)
-	mouseState = "up";
+			//this window should restore itself
+			show(hwnd);
 
-	glutPostRedisplay();*/
+			score = 0;
+			gameOverText = 0;
+			name = "";
+			cout << "Please enter your name: ";
+			cin >> name;
+			system("cls");
+
+			ShowWindow(hwnd, SW_SHOWMINIMIZED);
+			show(hwnd);
+
+			int validName = name.length() - 1;
+
+			if (validName >= 0)
+			{
+				addUser(name);
+
+				dt = ms / 10000.0;
+				gameOn = true;
+				colZ = false;
+
+				glutTimerFunc(ms, stepBall, ms);
+
+				ballPosition[0] = 0.0;
+				ballPosition[1] = 0.0;
+				ballPosition[2] = 0.0;
+
+				ballVelocity[0] = 0.0;
+				ballVelocity[1] = 0.0;
+				ballVelocity[2] = 5.0;
+
+				raquetPosition[0] = 0.0;
+				raquetPosition[1] = 0.0;
+				raquetPosition[2] = 2.0;
+			}
+		}
+	redisplayAll();
+	glutPostRedisplay();
 }
 
 /*

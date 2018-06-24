@@ -1,10 +1,20 @@
 #include "screencasts.h"
-#include <windows.h>
 
 /* WINDOW */
 const char *windowName = "Squash";
 int windowWidth = DEF_WINDOW_WIDTH;
 int windowHeight = DEF_WINDOW_HEIGHT;
+int score = 0;
+int gameOverText = 0;
+string name = "";
+HWND hwnd = GetConsoleWindow();
+
+/*DB*/
+string usersFileName = "users.json";
+string scoreboardFileName = "scoreboard.json";
+string settingsFileName = "settings.json";
+string openDir = "";
+string saveDir = "";
 
 /* TOGGLE */
 int toggleAxes = DEF_AXES; /* toggle axes on and off */

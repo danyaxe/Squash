@@ -1,43 +1,67 @@
 #include "screencasts.h"
-//
-//namespace
-//{
-//	class GLFunc
-//	{
-//	public:
-//		GLFunc()
-//		{
-//			glActiveTexture = (PFNGLACTIVETEXTUREPROC)wglGetProcAddress("glActiveTexture");
-//		}
-//		PFNGLACTIVETEXTUREPROC glActiveTexture;
-//	};
-//}
-int main(int argc, char* argv[])
+
+int main(int argc, char *argv[])
 {
+	name = "";
+	cout << "Please enter your name: ";
+	cin >> name;
+	system("cls");
 
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(windowWidth, windowHeight);
-	glutCreateWindow(windowName);
+	int validName = name.length() - 1;
 
-	glutDisplayFunc(display);
-	glutReshapeFunc(displayReshape);
-	glutKeyboardFunc(windowKey);
-	glutSpecialFunc(windowSpecial);
-	glutPassiveMotionFunc(mouseCallback);
+	if (validName >= 0)
+	{
+		initialize();
+		addUser(name);
 
-	glutCreateMenu(windowMenu);
-	glutAddMenuEntry("Toggle Axes [1]", '1');
-	glutAddMenuEntry("Toggle Values [2]", '2');
-	glutAddMenuEntry("Toggle Mode [3]", '3');
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
+		glutInit(&argc, argv);
+		glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+		glutInitWindowSize(windowWidth, windowHeight);
+		glutCreateWindow(windowName);
 
-	glutTimerFunc(ms, stepBall, ms); /* Timer for animation */
+		glutDisplayFunc(display);
+		glutReshapeFunc(displayReshape);
+		glutKeyboardFunc(windowKey);
+		glutSpecialFunc(windowSpecial);
+		glutMouseFunc(windowMouse);
+		glutPassiveMotionFunc(mouseCallback);
 
-	initializeTextures();
+		glutCreateMenu(windowMenu);
+		glutAddMenuEntry("Toggle Axes [1]", '1');
+		glutAddMenuEntry("Toggle Values [2]", '2');
+		glutAddMenuEntry("Toggle Mode [3]", '3');
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
-	redisplayAll();
-	glutMainLoop();
-	
-	return 0;
+		glutTimerFunc(ms, stepBall, ms); /* Timer for animation */
+
+		initializeTextures();
+
+		redisplayAll();
+		glutMainLoop();
+
+		return 0;
+	}
+}
+
+void show(HWND hwnd)
+{
+	WINDOWPLACEMENT place = { sizeof(WINDOWPLACEMENT) };
+	GetWindowPlacement(hwnd, &place);
+	switch (place.showCmd)
+	{
+	case SW_SHOWMAXIMIZED:
+		ShowWindow(hwnd, SW_SHOWMAXIMIZED);
+		break;
+	case SW_SHOWMINIMIZED:
+		ShowWindow(hwnd, SW_SHOWMINIMIZED);
+		break;
+	case SW_RESTORE:
+		ShowWindow(hwnd, SW_RESTORE);
+		break;
+	default:
+		ShowWindow(hwnd, SW_NORMAL);
+		break;
+	}
+	SetWindowPos(0, HWND_TOP, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOSIZE | SWP_NOMOVE);
+	SetForegroundWindow(hwnd);
 }
